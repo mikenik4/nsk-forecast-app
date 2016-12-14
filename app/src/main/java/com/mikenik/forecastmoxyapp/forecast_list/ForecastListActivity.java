@@ -26,5 +26,15 @@ public class ForecastListActivity extends AppCompatActivity {
                 startActivity(new Intent(ForecastListActivity.this, ForecastDetailsActivity.class));
             }
         });
+
+        if (savedInstanceState == null) {
+            loadEmptyListFragment();
+        }
+    }
+
+    private void loadEmptyListFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container, new ForecastEmptyListFragment())
+                .commit();
     }
 }

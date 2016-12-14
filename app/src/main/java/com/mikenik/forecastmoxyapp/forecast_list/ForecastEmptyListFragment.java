@@ -9,16 +9,16 @@ import android.view.ViewGroup;
 import com.mikenik.forecastmoxyapp.R;
 
 /**
- * A placeholder fragment containing a simple view.
+ * A placeholder fragment containing message.
  */
-public class ForecastListActivityFragment extends Fragment {
+public class ForecastEmptyListFragment extends Fragment {
 
-    public ForecastListActivityFragment() {
+    public ForecastEmptyListFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_forecast_list, container, false);
+        return inflater.inflate(R.layout.fragment_forecast_empty_list, container, false);
     }
 }
