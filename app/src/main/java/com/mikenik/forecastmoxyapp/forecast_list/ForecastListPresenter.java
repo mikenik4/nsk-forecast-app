@@ -23,6 +23,12 @@ public class ForecastListPresenter extends MvpPresenter<ForecastListView> {
         this.gismeteoApi = gismeteoApi;
     }
 
+    @Override
+    protected void onFirstViewAttach() {
+        super.onFirstViewAttach();
+        getViewState().showEmptyList();
+    }
+
     public void refreshForecasts() {
         getViewState().showProgress();
         gismeteoApi.getTownForecast(GismeteoApi.NOVOSIBIRSK)

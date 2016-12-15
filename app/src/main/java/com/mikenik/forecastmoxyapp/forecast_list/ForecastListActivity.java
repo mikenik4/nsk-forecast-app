@@ -1,10 +1,11 @@
 package com.mikenik.forecastmoxyapp.forecast_list;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -14,11 +15,11 @@ import com.mikenik.forecastmoxyapp.R;
 import com.mikenik.forecastmoxyapp.api.ApiGenerator;
 import com.mikenik.forecastmoxyapp.api.xml.Forecast;
 import com.mikenik.forecastmoxyapp.databinding.ActivityForecastListBinding;
-import com.mikenik.forecastmoxyapp.forecast_details.ForecastDetailsActivity;
 
 import java.util.List;
 
 public class ForecastListActivity extends MvpAppCompatActivity implements ForecastListView {
+    private static final String LIST_FRAGMENT_TAG = "list_fragment";
     private ActivityForecastListBinding binding;
 
     @InjectPresenter
@@ -42,10 +43,6 @@ public class ForecastListActivity extends MvpAppCompatActivity implements Foreca
                 presenter.refreshForecasts();
             }
         });
-
-        if (savedInstanceState == null) {
-            showEmptyList();
-        }
     }
 
     @Override
@@ -69,8 +66,17 @@ public class ForecastListActivity extends MvpAppCompatActivity implements Foreca
 
     @Override
     public void showForecastList(List<Forecast> forecasts) {
-//        Log.i(getLocalClassName(), "showForecastList");
-        //TODO change fragment, load in recyclerview
+        Log.i(getLocalClassName(), "showForecastList");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ForecastListFragment listFragment =
+                (ForecastListFragment) fragmentManager.findFragmentByTag(LIST_FRAGMENT_TAG);
+        if (listFragment == null) {
+            listFragment = ForecastListFragment.newInstance();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, listFragment, LIST_FRAGMENT_TAG)
+                    .commit();
+        }
+        listFragment.setForecasts(forecasts);
     }
 
     @Override
@@ -87,11 +93,5 @@ public class ForecastListActivity extends MvpAppCompatActivity implements Foreca
 
     private void showErrorSnackbar(@StringRes int message) {
         Snackbar.make(binding.coordinatorLayout, message, Snackbar.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void showForecastDetails() {
-        //TODO give some info through intent
-        startActivity(new Intent(ForecastListActivity.this, ForecastDetailsActivity.class));
     }
 }
