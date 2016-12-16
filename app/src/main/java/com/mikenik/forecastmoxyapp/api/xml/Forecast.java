@@ -18,14 +18,24 @@ public class Forecast implements Serializable {
     @Attribute
     private String hour;
     @Attribute
-    private String tod;
+    private int tod;
     @Attribute
-    private String predict;
+    private int predict;
     @Attribute
-    private String weekday;
+    private int weekday;
 
     @Element(name = "PHENOMENA")
     private Phenomena phenomena;
+    @Element(name = "PRESSURE")
+    private IntRange pressure;
+    @Element(name = "TEMPERATURE")
+    private IntRange temperature;
+    @Element(name = "WIND")
+    private Wind wind;
+    @Element(name = "RELWET")
+    private IntRange relwet;
+    @Element(name = "HEAT")
+    private IntRange heat;
 
     public String getDay() {
         return day;
@@ -59,27 +69,27 @@ public class Forecast implements Serializable {
         this.hour = hour;
     }
 
-    public String getTod() {
+    public int getTod() {
         return tod;
     }
 
-    public void setTod(String tod) {
+    public void setTod(int tod) {
         this.tod = tod;
     }
 
-    public String getPredict() {
+    public int getPredict() {
         return predict;
     }
 
-    public void setPredict(String predict) {
+    public void setPredict(int predict) {
         this.predict = predict;
     }
 
-    public String getWeekday() {
+    public int getWeekday() {
         return weekday;
     }
 
-    public void setWeekday(String weekday) {
+    public void setWeekday(int weekday) {
         this.weekday = weekday;
     }
 
@@ -89,5 +99,45 @@ public class Forecast implements Serializable {
 
     public void setPhenomena(Phenomena phenomena) {
         this.phenomena = phenomena;
+    }
+
+    public IntRange getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(IntRange pressure) {
+        this.pressure = pressure;
+    }
+
+    public IntRange getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(IntRange temperature) {
+        this.temperature = temperature;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
+
+    public IntRange getRelwet() {
+        return relwet;
+    }
+
+    public void setRelwet(IntRange relwet) {
+        this.relwet = relwet;
+    }
+
+    public IntRange getHeat() {
+        return heat;
+    }
+
+    public void setHeat(IntRange heat) {
+        this.heat = heat;
     }
 }

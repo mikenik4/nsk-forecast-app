@@ -7,43 +7,43 @@ import java.io.Serializable;
 public class Phenomena implements Serializable {
     private static final long serialVersionUID = -5463108276507002583L;
     @Attribute
-    private String cloudiness;
+    private int cloudiness;
     @Attribute
-    private String precipitation;
+    private int precipitation;
     @Attribute
-    private String spower;
+    private int spower;
     @Attribute
-    private String rpower;
+    private int rpower;
 
-    public String getCloudiness() {
+    public int getCloudiness() {
         return cloudiness;
     }
 
-    public void setCloudiness(String cloudiness) {
+    public void setCloudiness(int cloudiness) {
         this.cloudiness = cloudiness;
     }
 
-    public String getPrecipitation() {
+    public int getPrecipitation() {
         return precipitation;
     }
 
-    public void setPrecipitation(String precipitation) {
+    public void setPrecipitation(int precipitation) {
         this.precipitation = precipitation;
     }
 
-    public String getSpower() {
+    public int getSpower() {
         return spower;
     }
 
-    public void setSpower(String spower) {
+    public void setSpower(int spower) {
         this.spower = spower;
     }
 
-    public String getRpower() {
+    public int getRpower() {
         return rpower;
     }
 
-    public void setRpower(String rpower) {
+    public void setRpower(int rpower) {
         this.rpower = rpower;
     }
 }
