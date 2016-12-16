@@ -1,6 +1,5 @@
 package com.mikenik.forecastmoxyapp.forecast_list;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,6 +38,7 @@ public class ForecastListFragment extends Fragment implements ForecastRecyclerVi
                              Bundle savedInstanceState) {
         RecyclerView recyclerView =
                 (RecyclerView) inflater.inflate(R.layout.fragment_forecast_list, container, false);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
         adapter = new ForecastRecyclerViewAdapter(forecasts, this);
         recyclerView.setAdapter(adapter);
@@ -64,7 +64,6 @@ public class ForecastListFragment extends Fragment implements ForecastRecyclerVi
      */
     @Override
     public void onClick(Forecast forecast) {
-        Intent intent = new Intent(getActivity(), ForecastDetailsActivity.class);
-        startActivity(intent);
+        startActivity(ForecastDetailsActivity.getStartingIntent(getContext(), forecast));
     }
 }

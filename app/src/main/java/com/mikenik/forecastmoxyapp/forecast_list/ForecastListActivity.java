@@ -81,13 +81,11 @@ public class ForecastListActivity extends MvpAppCompatActivity implements Foreca
 
     @Override
     public void showConnectionError() {
-//        Log.i(getLocalClassName(), "showConnectionError ");
         showErrorSnackbar(R.string.connection_error);
     }
 
     @Override
     public void showServerError() {
-//        Log.i(getLocalClassName(), "showServerError");
         showErrorSnackbar(R.string.server_error);
     }
 

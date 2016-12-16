@@ -2,7 +2,10 @@ package com.mikenik.forecastmoxyapp.api.xml;
 
 import org.simpleframework.xml.Attribute;
 
-public class Phenomena {
+import java.io.Serializable;
+
+public class Phenomena implements Serializable {
+    private static final long serialVersionUID = -5463108276507002583L;
     @Attribute
     private String cloudiness;
     @Attribute

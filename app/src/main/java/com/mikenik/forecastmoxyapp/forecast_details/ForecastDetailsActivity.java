@@ -1,28 +1,30 @@
 package com.mikenik.forecastmoxyapp.forecast_details;
 
+import android.content.Context;
+import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.mikenik.forecastmoxyapp.R;
+import com.mikenik.forecastmoxyapp.api.xml.Forecast;
+import com.mikenik.forecastmoxyapp.databinding.ActivityForecastDetailsBinding;
 
-public class ForecastDetailsActivity extends MvpAppCompatActivity implements HelloWorldView {
+public class ForecastDetailsActivity extends AppCompatActivity {
+    private static final String FORECAST = ForecastDetailsActivity.class.getPackage() + ".Forecast";
 
-    @InjectPresenter
-    HelloWorldPresenter helloWorldPresenter;
+    private ActivityForecastDetailsBinding binding;
 
-    private TextView helloWorldTextView;
+    public static Intent getStartingIntent(Context context, Forecast forecast) {
+        Intent intent = new Intent(context, ForecastDetailsActivity.class);
+        intent.putExtra(FORECAST, forecast);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forecast_details);
-        helloWorldTextView = (TextView) findViewById(R.id.textview);
-    }
-
-    @Override
-    public void showMessage(int message) {
-        helloWorldTextView.setText(message);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_details);
+        Forecast forecast = (Forecast) getIntent().getSerializableExtra(FORECAST);
     }
 }

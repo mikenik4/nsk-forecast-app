@@ -4,8 +4,11 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.io.Serializable;
+
 @Root
-public class Forecast {
+public class Forecast implements Serializable {
+    private static final long serialVersionUID = -4677432683795573969L;
     @Attribute
     private String day;
     @Attribute
