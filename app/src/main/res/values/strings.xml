@@ -3,4 +3,17 @@
     <string name="no_data">Нет данных</string>
     <string name="connection_error">Извините, произошла ошибка</string>
     <string name="server_error">Извините, проблемы с сервером</string>
+    <string name="item_temperature">%.1f\u2103</string>
+    <string name="item_feels_like">По ощущению %+d</string>
+    <string name="item_wind">Ветер %1$d м/с %2$s</string>
+    <string-array name="item_wind_direction">
+        <item>С</item>
+        <item>СВ</item>
+        <item>В</item>
+        <item>ЮВ</item>
+        <item>Ю</item>
+        <item>ЮЗ</item>
+        <item>З</item>
+        <item>СЗ</item>
+    </string-array>
 </resources>

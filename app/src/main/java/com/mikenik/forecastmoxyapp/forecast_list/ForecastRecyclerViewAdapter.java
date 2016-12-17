@@ -1,13 +1,17 @@
 package com.mikenik.forecastmoxyapp.forecast_list;
 
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mikenik.forecastmoxyapp.R;
 import com.mikenik.forecastmoxyapp.api.xml.Forecast;
+import com.mikenik.forecastmoxyapp.api.xml.Wind;
 import com.mikenik.forecastmoxyapp.databinding.ForecastItemBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import static android.support.v7.widget.RecyclerView.NO_POSITION;
@@ -20,9 +24,15 @@ public class ForecastRecyclerViewAdapter extends RecyclerView.Adapter<ForecastRe
     private List<Forecast> forecasts;
     private final ItemClickListener itemClickListener;
 
-    public ForecastRecyclerViewAdapter(List<Forecast> forecasts, ItemClickListener listener) {
+    private final Resources resources;
+    private final SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm, EEE, d MMM");
+    private final String[] windDirections;
+
+    public ForecastRecyclerViewAdapter(Resources resources, List<Forecast> forecasts, ItemClickListener listener) {
+        this.resources = resources;
         this.forecasts = forecasts;
         this.itemClickListener = listener;
+        windDirections = resources.getStringArray(R.array.item_wind_direction);
     }
 
     public List<Forecast> getForecasts() {
@@ -60,8 +70,14 @@ public class ForecastRecyclerViewAdapter extends RecyclerView.Adapter<ForecastRe
         }
 
         void bindTo(Forecast forecast) {
-            binding.date.setText(forecast.getDay() + "/" + forecast.getMonth() + "/"
-                    + forecast.getYear() + " " + forecast.getHour());
+            binding.date.setText(dateformat.format(forecast.getTimeDate()));
+            binding.temperature.setText(resources.getString(R.string.item_temperature,
+                    forecast.getTemperature().getMean()));
+            binding.heat.setText(resources.getString(R.string.item_feels_like,
+                    forecast.getHeat().getRoundedMean()));
+            Wind wind = forecast.getWind();
+            binding.wind.setText(resources.getString(R.string.item_wind, wind.getRoundedMean(),
+                    windDirections[wind.getDirection()]));
         }
 
         @Override

@@ -1,11 +1,14 @@
 package com.mikenik.forecastmoxyapp.forecast_list;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mikenik.forecastmoxyapp.api.GismeteoApi;
 import com.mikenik.forecastmoxyapp.api.xml.Forecast;
 import com.mikenik.forecastmoxyapp.api.xml.WeatherResponse;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -17,6 +20,7 @@ import retrofit2.Response;
  */
 @InjectViewState
 public class ForecastListPresenter extends MvpPresenter<ForecastListView> {
+    private static final String TAG = ForecastListPresenter.class.getSimpleName();
     private GismeteoApi gismeteoApi;
 
     public ForecastListPresenter(GismeteoApi gismeteoApi) {
@@ -47,6 +51,11 @@ public class ForecastListPresenter extends MvpPresenter<ForecastListView> {
                             }
                         } else {
                             getViewState().showServerError();
+                            try {
+                                Log.d(TAG, response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
 
@@ -54,6 +63,7 @@ public class ForecastListPresenter extends MvpPresenter<ForecastListView> {
                     public void onFailure(Call<WeatherResponse> call, Throwable t) {
                         getViewState().hideProgress();
                         getViewState().showConnectionError();
+                        Log.e(TAG, "api request failed, reason: ", t);
                     }
                 });
     }

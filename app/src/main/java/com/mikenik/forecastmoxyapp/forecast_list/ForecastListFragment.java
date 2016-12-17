@@ -40,7 +40,7 @@ public class ForecastListFragment extends Fragment implements ForecastRecyclerVi
                 (RecyclerView) inflater.inflate(R.layout.fragment_forecast_list, container, false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-        adapter = new ForecastRecyclerViewAdapter(forecasts, this);
+        adapter = new ForecastRecyclerViewAdapter(getResources(), forecasts, this);
         recyclerView.setAdapter(adapter);
         return recyclerView;
     }

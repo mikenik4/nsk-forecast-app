@@ -30,4 +30,12 @@ public class IntRange implements Serializable {
     public void setMax(int max) {
         this.max = max;
     }
+
+    public float getMean() {
+        return (min + max) / 2f;
+    }
+
+    public int getRoundedMean() {
+        return Math.round(getMean());
+    }
 }

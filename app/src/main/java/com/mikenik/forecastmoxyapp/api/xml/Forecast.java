@@ -3,8 +3,12 @@ package com.mikenik.forecastmoxyapp.api.xml;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.core.Commit;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Root
 public class Forecast implements Serializable {
@@ -17,8 +21,8 @@ public class Forecast implements Serializable {
     private String year;
     @Attribute
     private String hour;
-    @Attribute
-    private int tod;
+    @Attribute(name = "tod")
+    private int timeOfDay;
     @Attribute
     private int predict;
     @Attribute
@@ -36,6 +40,8 @@ public class Forecast implements Serializable {
     private IntRange relwet;
     @Element(name = "HEAT")
     private IntRange heat;
+
+    private Date timeDate;
 
     public String getDay() {
         return day;
@@ -69,12 +75,12 @@ public class Forecast implements Serializable {
         this.hour = hour;
     }
 
-    public int getTod() {
-        return tod;
+    public int getTimeOfDay() {
+        return timeOfDay;
     }
 
-    public void setTod(int tod) {
-        this.tod = tod;
+    public void setTimeOfDay(int timeOfDay) {
+        this.timeOfDay = timeOfDay;
     }
 
     public int getPredict() {
@@ -139,5 +145,19 @@ public class Forecast implements Serializable {
 
     public void setHeat(IntRange heat) {
         this.heat = heat;
+    }
+
+    public Date getTimeDate() {
+        return timeDate;
+    }
+
+    public void setTimeDate(Date timeDate) {
+        this.timeDate = timeDate;
+    }
+
+    @Commit
+    private void commit() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHH");
+        timeDate = format.parse(year + month + day + hour);
     }
 }

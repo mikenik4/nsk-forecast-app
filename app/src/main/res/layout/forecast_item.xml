@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:paddingLeft="@dimen/item_left_padding"
+            android:paddingRight="@dimen/item_right_padding"
+            android:layout_height="@dimen/item_height">
         <TextView
                 android:id="@+id/date"
+                tools:text="16:00, сб, 17 декабря"
+                android:layout_marginTop="@dimen/item_text_top_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItem"/>
-
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"/>
         <TextView
-                android:id="@+id/content"
+                android:id="@+id/heat"
+                tools:text="По ощущению -12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
-                android:textAppearance="?attr/textAppearanceListItem"/>
-    </LinearLayout>
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <ImageView
+                android:id="@+id/bottom_baseline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/item_text_bottom_margin"
+                android:layout_alignParentBottom="true"
+                android:baseline="0dp"/>
+        <TextView
+                android:id="@+id/wind"
+                tools:text="Ветер 2 м/с ЮЗ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/bottom_baseline"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        <TextView
+                android:id="@+id/temperature"
+                tools:text="-16,6\u2103"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"/>
+    </RelativeLayout>
 </layout>
