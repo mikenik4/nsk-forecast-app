@@ -2,6 +2,7 @@ package com.mikenik.forecastmoxyapp.forecast_list;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +40,9 @@ public class ForecastListFragment extends Fragment implements ForecastRecyclerVi
         RecyclerView recyclerView =
                 (RecyclerView) inflater.inflate(R.layout.fragment_forecast_list, container, false);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         adapter = new ForecastRecyclerViewAdapter(getResources(), forecasts, this);
         recyclerView.setAdapter(adapter);
         return recyclerView;
