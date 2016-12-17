@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ForecastMoxyApp</string>
+    <string name="app_name">Погода в Новосибирске</string>
     <string name="no_data">Нет данных</string>
     <string name="connection_error">Извините, произошла ошибка</string>
     <string name="server_error">Извините, проблемы с сервером</string>
