@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.View;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -33,7 +32,6 @@ public class ForecastListActivity extends MvpAppCompatActivity implements Foreca
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Log.i(getLocalClassName(), "onCreate");
         binding = DataBindingUtil.setContentView(this, R.layout.activity_forecast_list);
         setSupportActionBar(binding.toolbar);
 
@@ -47,26 +45,22 @@ public class ForecastListActivity extends MvpAppCompatActivity implements Foreca
 
     @Override
     public void showEmptyList() {
-//        Log.i(getLocalClassName(), "showEmptyList");
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new ForecastEmptyListFragment()).commit();
     }
 
     @Override
     public void showProgress() {
-//        Log.i(getLocalClassName(), "showProgress");
         binding.fab.setEnabled(false);
     }
 
     @Override
     public void hideProgress() {
-//        Log.i(getLocalClassName(), "hideProgress");
         binding.fab.setEnabled(true);
     }
 
     @Override
     public void showForecastList(List<Forecast> forecasts) {
-        Log.i(getLocalClassName(), "showForecastList");
         FragmentManager fragmentManager = getSupportFragmentManager();
         ForecastListFragment listFragment =
                 (ForecastListFragment) fragmentManager.findFragmentByTag(LIST_FRAGMENT_TAG);
