@@ -8,4 +8,7 @@
     <dimen name="item_height">88dp</dimen>
     <dimen name="item_text_top_margin">16dp</dimen>
     <dimen name="item_text_bottom_margin">20dp</dimen>
+    <dimen name="title_margins">4dp</dimen>
+    <dimen name="subheader_margins">2dp</dimen>
+    <dimen name="details_body_text_left_margin">16dp</dimen>
 </resources>
