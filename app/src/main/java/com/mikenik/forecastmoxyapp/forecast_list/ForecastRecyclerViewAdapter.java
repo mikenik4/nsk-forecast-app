@@ -57,7 +57,7 @@ public class ForecastRecyclerViewAdapter extends RecyclerView.Adapter<ForecastRe
 
     @Override
     public int getItemCount() {
-        return forecasts.size();
+        return forecasts == null ? 0 : forecasts.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
